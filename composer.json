@@ -1,5 +1,5 @@
 {
-    "name": "sovic/common",
+    "name": "sovic/common-ui",
     "type": "library",
     "license": "MIT",
     "autoload": {
