@@ -1,0 +1,35 @@
+{
+    "name": "sovic/common",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sovic\\CommonUi\\": "src/"
+        },
+        "classmap": [
+            "src/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sovic\\CommonUi\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "src/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Vojtech Bojda"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "~8.2",
+        "symfony/twig-bundle": "^6.4|^7.0",
+        "symfony/twig-bridge": "^6.4|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    }
+}
