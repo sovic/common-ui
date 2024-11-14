@@ -1,8 +1,24 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+# TODO
+# https://intellij-support.jetbrains.com/hc/en-us/articles/206827587-How-to-manage-projects-under-Version-Control-Systems
+
+dataSources/*
+
+# user specific files
+tasks.xml
+webServers.xml
+workspace.xml
+sshConfigs.xml
+
+# data sources
+dataSources.local.xml
+
+# db schema (consider)
+dataSources.ids
+
+# deployment, remote, debugging, etc.
+deployment.xml
+php.xml
+remote-mappings.xml
+
+# http requests logs
+httpRequests/*
