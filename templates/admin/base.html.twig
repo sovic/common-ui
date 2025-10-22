@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="cs" data-bs-theme="{{ theme_mode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Vojtěch Bojda; mailto:info@vojtechbojda.cz">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %}{{ 'general.title_appendix'|trans }}{% endblock %}</title>
+
+    {% if not local_debug %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700"/>
+    {% endif %}
+    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('style.bundle.css', 'css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('custom.css', 'css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png', 'img') }}"/>
+
+    {% block stylesheets %}
+    {% endblock %}
+    <!--suppress CssUnusedSymbol -->
+    <style>
+        body {
+            font-family: 'Open Sans', 'Arial', sans-serif;
+        }
+
+        .w-cover {
+            width: calc(100% + 50vw - 270px + 2.5rem);
+        }
+
+        .page-loader {
+            opacity: 0.5 !important;
+        }
+    </style>
+
+    {% if not local_debug %}
+        <script src="{{ asset('ab70a1971da51036ee4343d6c7cd9410.min.js', 'js') }}"></script>
+        <!--suppress JSUnresolvedReference -->
+        <script>
+            Sentry.onLoad(function () {
+                Sentry.init({});
+            });
+        </script>
+    {% endif %}
+</head>
+<body data-kt-app-layout="dark-sidebar"
+      data-kt-app-header-fixed="true"
+      data-kt-app-sidebar-enabled="true"
+      data-kt-app-sidebar-fixed="true"
+      data-kt-app-sidebar-hoverable="true"
+      data-kt-app-sidebar-push-header="true"
+      data-kt-app-sidebar-push-toolbar="true"
+      data-kt-app-sidebar-push-footer="true"
+      data-kt-app-toolbar-enabled="true"
+    {% if sidebar == 'closed' %}
+        data-kt-app-sidebar-minimize="on"
+    {% endif %}
+      class="app-default">
+
+{% block body %}{% endblock %}
+
+<script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('scripts.bundle.js', 'js') }}"></script>
+<script src="{{ asset('widgets.bundle.js', 'js') }}"></script>
+<script src="{{ asset('axios.min.js', 'js') }}"></script>
+<script src="{{ asset('autoComplete.min.js', 'js') }}"></script>
+
+{% block javascripts %}
+    {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
+    <!--suppress JSUnresolvedReference -->
+    <script>
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for message in app.flashes('success') %}
+            toastr.success({{ message|json_encode|raw }});
+            {% endfor %}
+
+            {% for message in app.flashes('error') %}
+            toastr.error({{ message|json_encode|raw }});
+            {% endfor %}
+
+            {% for message in app.flashes('info') %}
+            toastr.info({{ message|json_encode|raw }});
+            {% endfor %}
+        });
+
+        let $copyEl = document.getElementsByClassName('copy-to-clipboard');
+        for (let i = 0; i < $copyEl.length; i++) {
+            const target = $copyEl[i].querySelector('.copy-to-clipboard-target');
+            const button = $copyEl[i].querySelector('.copy-to-clipboard-source');
+            let clipboard = new ClipboardJS(button, {
+                target: target,
+                text: function () {
+                    return target.innerHTML;
+                }
+            });
+
+            clipboard.on('success', function () {
+                const currentLabel = button.innerHTML;
+                if (button.innerHTML === 'Zkopírováno!') {
+                    return;
+                }
+                button.innerHTML = 'Zkopírováno!';
+                setTimeout(function () {
+                    button.innerHTML = currentLabel;
+                }, 3000)
+            });
+        }
+
+        function createLoader() {
+            const loadingEl = document.createElement("div");
+            document.body.append(loadingEl);
+            loadingEl.classList.add("page-loader");
+            loadingEl.innerHTML = `
+                <span class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Probíhá zpracování…</span>
+                </span>
+            `;
+        }
+
+        createLoader();
+    </script>
+{% endblock %}
+</body>
+</html>
