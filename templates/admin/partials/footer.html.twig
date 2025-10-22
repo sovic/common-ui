@@ -6,7 +6,9 @@
                 <span title="Čas vygenerování stránky">
                     <i class="bi bi-clock me-1"></i> {{ 'now'|date('j.n.Y H:i') }}
                 </span>
-                © KČT
+                {% if copyright is defined %}
+                    © {{ copyright }}
+                {% endif %}
             </span>
         </div>
 

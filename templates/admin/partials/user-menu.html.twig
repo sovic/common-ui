@@ -3,7 +3,7 @@
     <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
          data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
          data-kt-menu-placement="bottom-end">
-        <img src="{{ asset('logo/kct.svg', 'img') }}" style="max-width: 30px;" alt="user">
+        <img src="{{ asset(logo_path, 'img') }}" style="max-width: 30px;" alt="user">
     </div>
 
     {% set entity = auth_user.entity %}
@@ -15,7 +15,7 @@
         <div class="menu-item px-3">
             <div class="menu-content d-flex align-items-center px-3">
                 <div class="symbol symbol-50px me-5">
-                    <img src="{{ asset('logo/kct.svg', 'img') }}" style="max-width: 30px;" alt="user">
+                    <img src="{{ asset(logo_path, 'img') }}" style="max-width: 30px;" alt="user">
                 </div>
 
                 <div class="d-flex flex-column">
