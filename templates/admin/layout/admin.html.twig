@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '@CommonUiBundle/admin/base.html.twig' %}
 
 {% set card_class = 'card card-flush card-bleed shadow-light-lg mb-6' %}
 {% set card_header_class = 'card-header align-items-center py-3' %}
@@ -17,21 +17,21 @@
                         </div>
                     </div>
 
-                    {% include 'user/blocks/header.html.twig' %}
+                    {% include '@CommonUiBundle/admin/user/blocks/header.html.twig' %}
                 </div>
             </div>
 
             <div class="app-wrapper flex-column flex-row-fluid">
-                {% include 'user/blocks/sidebar.html.twig' %}
+                {% include '@CommonUiBundle/admin/partials/sidebar.html.twig' %}
 
                 <div class="app-main flex-column flex-row-fluid">
                     <div class="d-flex flex-column flex-column-fluid">
-                        {% include 'user/blocks/toolbar.html.twig' %}
+                        {% include '@CommonUiBundle/admin/partials/toolbar.html.twig' %}
                         <div class="app-content flex-column-fluid ">
                             {% block content %}{% endblock %}
                         </div>
                     </div>
-                    {% include 'user/blocks/footer.html.twig' %}
+                    {% include '@CommonUiBundle/admin/partials/footer.html.twig' %}
                 </div>
             </div>
         </div>
