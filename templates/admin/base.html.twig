@@ -10,7 +10,7 @@
     {% if not local_debug %}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700"/>
     {% endif %}
-    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('plugins/global/plugins.bundle.css', 'css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('style.bundle.css', 'css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('custom.css', 'css') }}" rel="stylesheet" type="text/css"/>
     <link rel="icon" type="image/png" href="{{ asset('favicon.png', 'img') }}"/>
@@ -51,14 +51,14 @@
       data-kt-app-sidebar-push-toolbar="true"
       data-kt-app-sidebar-push-footer="true"
       data-kt-app-toolbar-enabled="true"
-    {% if sidebar == 'closed' %}
-        data-kt-app-sidebar-minimize="on"
-    {% endif %}
+        {% if sidebar == 'closed' %}
+            data-kt-app-sidebar-minimize="on"
+        {% endif %}
       class="app-default">
 
 {% block body %}{% endblock %}
 
-<script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('plugins/global/plugins.bundle.js', 'js') }}"></script>
 <script src="{{ asset('scripts.bundle.js', 'js') }}"></script>
 <script src="{{ asset('widgets.bundle.js', 'js') }}"></script>
 <script src="{{ asset('axios.min.js', 'js') }}"></script>

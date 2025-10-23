@@ -16,14 +16,14 @@
                 </span>
             {% endif %}
 
-            {% if auth_user %}
+            {% if auth_user and features is defined and features is not empty %}
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <div
                             class="btn btn-icon btn-custom btn-icon-muted btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
                             data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                             data-kt-menu-attach="parent"
                             data-kt-menu-placement="bottom-end"
-                            title="Novinky v evidenci">
+                            title="Novinky">
                         <i class="ki-duotone ki-notification-status fs-1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -35,7 +35,7 @@
 
                         <div class="d-flex flex-column bgi-no-repeat rounded-top bg-primary">
                             <h3 class="text-white fw-semibold px-9 mt-5 mb-5">
-                                Novinky v evidenci
+                                Novinky
                             </h3>
                         </div>
 
