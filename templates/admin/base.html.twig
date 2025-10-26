@@ -1,3 +1,15 @@
+{% set card_class = 'card card-flush card-bleed shadow-light-lg mb-6' %}
+{% set card_header_class = 'card-header align-items-center py-3' %}
+{% set theme = {
+    default: {
+        filters_item_class: 'px-7 py-2',
+        table_class: 'table table-row-dashed align-middle gy-5',
+        tbody_class: 'fs-6 fw-semibold',
+        thead_tr_class: 'text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0',
+        btn_action_sm_class: 'btn btn-sm btn-flex btn-light-primary shadow-sm',
+        btn_list_sm_class: 'btn btn-sm btn-light btn-flex btn-center btn-active-light-primary',
+    }
+} %}
 <!DOCTYPE html>
 <html lang="cs" data-bs-theme="{{ theme_mode }}">
 <head>
@@ -5,11 +17,12 @@
     <meta name="author" content="Vojtěch Bojda; mailto:info@vojtechbojda.cz">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %}{{ 'general.title_appendix'|trans }}{% endblock %}</title>
+    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %} | {{ 'general.title_appendix'|trans }}{% endblock %}</title>
 
-    {% if not local_debug %}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700"/>
+    {% if font_url is defined and font_url is not empty %}
+        <link rel="stylesheet" href="{{ font_url }}"/>
     {% endif %}
+
     <link href="{{ asset('plugins/global/plugins.bundle.css', 'css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('style.bundle.css', 'css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('custom.css', 'css') }}" rel="stylesheet" type="text/css"/>
@@ -19,9 +32,12 @@
     {% endblock %}
     <!--suppress CssUnusedSymbol -->
     <style>
+        {% if font_family is defined %}
         body {
-            font-family: 'Open Sans', 'Arial', sans-serif;
+            font-family: {{ font_family }};
         }
+
+        {% endif %}
 
         .w-cover {
             width: calc(100% + 50vw - 270px + 2.5rem);
@@ -32,8 +48,8 @@
         }
     </style>
 
-    {% if not local_debug %}
-        <script src="{{ asset('ab70a1971da51036ee4343d6c7cd9410.min.js', 'js') }}"></script>
+    {% if frontend_sentry_asset_path is defined %}
+        <script src="{{ asset(frontend_sentry_asset_path, 'js') }}"></script>
         <!--suppress JSUnresolvedReference -->
         <script>
             Sentry.onLoad(function () {
