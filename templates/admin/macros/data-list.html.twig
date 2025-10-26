@@ -25,9 +25,12 @@
     </div>
 {% endmacro %}
 
-{% macro actions(actions, btn_class) %}
+{% macro actions(actions, btn_class, theme = null) %}
     {% if btn_class is not defined or btn_class is empty %}
-        {% set btn_class = theme.default.btn_list_sm_class %}
+        {% set btn_class = 'btn btn-sm btn-light btn-flex btn-center btn-active-light-primary' %}
+        {% if theme %}
+            {% set btn_class = theme.default.btn_list_sm_class %}
+        {% endif %}
     {% endif %}
     {% if actions|length > 0 %}
         <a href="#"
