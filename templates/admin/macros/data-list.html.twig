@@ -25,12 +25,9 @@
     </div>
 {% endmacro %}
 
-{% macro actions(actions, btn_class, theme = null) %}
+{% macro actions(actions, btn_class) %}
     {% if btn_class is not defined or btn_class is empty %}
         {% set btn_class = 'btn btn-sm btn-light btn-flex btn-center btn-active-light-primary' %}
-        {% if theme %}
-            {% set btn_class = theme.default.btn_list_sm_class %}
-        {% endif %}
     {% endif %}
     {% if actions|length > 0 %}
         <a href="#"
@@ -95,7 +92,7 @@
 {% endmacro %}
 
 {% macro add_button(model, form, id = 0, title = '', icon_class = 'bi-pencil') %}
-    <a class="{{ theme.default.btn_action_sm_class }} edit-form-button"
+    <a class="btn btn-sm btn-flex btn-light-primary shadow-sm edit-form-button"
             {% if id > 0 %} title="Upravit" {% endif %}
        data-model="{{ model }}"
        data-form="{{ form }}"
@@ -188,8 +185,8 @@
 {% endmacro %}
 
 {% macro list_filter_enum_select(label, id, items, selected_value = '') %}
-    <div class="{{ theme.default.filters_item_class }} w-100">
-        <label for="{{ id }}" class="form-label {{ theme.default.tbody_class }} w-100">
+    <div class="px-7 py-2 w-100">
+        <label for="{{ id }}" class="form-label fs-6 fw-semibold w-100">
             <select id="{{ id }}"
                     name="{{ id }}"
                     autocomplete="off"
@@ -207,8 +204,8 @@
 {% endmacro %}
 
 {% macro list_filter_id_name_select(label, id, items, selected_value = '') %}
-    <div class="{{ theme.default.filters_item_class }} w-100">
-        <label for="{{ id }}" class="form-label {{ theme.default.tbody_class }} w-100">
+    <div class="px-7 py-2 w-100">
+        <label for="{{ id }}" class="form-label fs-6 fw-semibold w-100">
             <select id="{{ id }}"
                     name="{{ id }}"
                     autocomplete="off"
@@ -226,7 +223,7 @@
 {% endmacro %}
 
 {% macro list_filter_inactive(visibility) %}
-    <div class="{{ theme.default.filters_item_class }}">
+    <div class="px-7 py-2">
         <div class="form-group">
             <div class="form-check">
                 <input type="checkbox"
