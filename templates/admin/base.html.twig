@@ -17,7 +17,7 @@
     <meta name="author" content="Vojtěch Bojda; mailto:info@vojtechbojda.cz">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %} | {{ 'general.title_appendix'|trans }}{% endblock %}</title>
+    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %}{{ 'general.title_appendix'|trans }}{% endblock %}</title>
 
     {% if font_url is defined and font_url is not empty %}
         <link rel="stylesheet" href="{{ font_url }}"/>
@@ -38,14 +38,6 @@
         }
 
         {% endif %}
-
-        .w-cover {
-            width: calc(100% + 50vw - 270px + 2.5rem);
-        }
-
-        .page-loader {
-            opacity: 0.5 !important;
-        }
     </style>
 
     {% if frontend_sentry_asset_path is defined %}

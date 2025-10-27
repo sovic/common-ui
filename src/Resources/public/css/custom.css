@@ -1,3 +1,16 @@
+html[data-bs-theme='dark'] .text-black {
+    color: #fff !important;
+}
+
+.w-cover {
+    width: calc(100% + 50vw - 270px + 2.5rem);
+}
+
+.page-loader {
+    opacity: 0.5 !important;
+}
+
+/* Autocomplete Styles */
 .autocomplete-wrapper ul {
     position: absolute;
     max-height: 226px;
@@ -57,3 +70,5 @@
         width: 18rem
     }
 }
+
+/* End Autocomplete Styles */
