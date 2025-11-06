@@ -13,6 +13,9 @@
 {% if theme_mode is not defined %}
     {% set theme_mode = 'light' %}
 {% endif %}
+{% if sidebar is not defined %}
+    {% set sidebar = 'open' %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="cs" data-bs-theme="{{ theme_mode }}">
 <head>
