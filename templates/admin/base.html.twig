@@ -10,6 +10,9 @@
         btn_list_sm_class: 'btn btn-sm btn-light btn-flex btn-center btn-active-light-primary',
     }
 } %}
+{% if theme_mode is not defined %}
+    {% set theme_mode = 'light' %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="cs" data-bs-theme="{{ theme_mode }}">
 <head>
