@@ -1,0 +1,11 @@
+{
+  "bundles": {
+    "Sovic\\CommonUi\\CommonUiBundle": [
+      "all"
+    ]
+  },
+  "copy-from-recipe": {
+    "config/": "%CONFIG_DIR%/"
+  },
+  "ref": "9c5a65a90b1516b52dc8acb241383fd90652b17e"
+}
