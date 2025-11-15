@@ -54,9 +54,8 @@
                      data-kt-menu="true"
                      data-kt-menu-expand="false">
 
-                    {% if project_id is defined and project_id == 'kct' %}
-                        {{ include('@CommonUiBundle/admin/partials/menu/kct.html.twig') }}
-                    {% endif %}
+                    {% include 'admin/partials/sidebar-menu.html.twig' %}
+
                 </div>
             </div>
         </div>
