@@ -1,0 +1,30 @@
+{% macro content_editor_basic(selector) %}
+    <!--suppress JSUnresolvedReference -->
+    <script src="{{ asset('bundles/commonui/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script>
+        const $el = document.querySelector('{{ selector }}');
+        if ($el) {
+            const options = {
+                selector: '{{ selector }}',
+                height: "480",
+                menubar: false,
+                toolbar: [
+                    "undo redo | styleselect | bold italic | bullist numlist | link | code"
+                ],
+                plugins: "autolink link code",
+                link_class_list: [
+                    {title: 'None', value: ''},
+                    {title: 'External Link', value: 'ext_link'},
+                    {title: 'CTA link', value: 'int_cta_link'},
+                ]
+            };
+
+            // if (KTThemeMode.getMode() === "dark") {
+            //     options["skin"] = "oxide-dark";
+            //     options["content_css"] = "dark";
+            // }
+
+            tinymce.init(options);
+        }
+    </script>
+{% endmacro %}
