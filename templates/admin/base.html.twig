@@ -1,3 +1,4 @@
+{% import '@CommonUiBundle/admin/macros/layout.html.twig' as layout %}
 {% set theme = {
     default: {
         card_class: 'card card-flush card-bleed shadow-light-lg mb-6',
@@ -16,6 +17,9 @@
 {% if sidebar is not defined %}
     {% set sidebar = 'open' %}
 {% endif %}
+{% if title_appendix is not defined %}
+    {% set title_appendix = '' %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="cs" data-bs-theme="{{ theme_mode }}">
 <head>
@@ -23,7 +27,7 @@
     <meta name="author" content="Vojtěch Bojda; mailto:info@vojtechbojda.cz">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>{% block title %}Vítejte!{% endblock %}{% block title_appendix %}{{ 'general.title_appendix'|trans }}{% endblock %}</title>
+    <title>{% block title %}Vítejte!{% endblock %}{{ title_appendix }}</title>
 
     {% if font_url is defined and font_url is not empty %}
         <link rel="stylesheet" href="{{ font_url }}"/>
@@ -34,8 +38,7 @@
     <link href="{{ asset('bundles/commonui/css/custom.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="icon" type="image/png" href="{{ asset('favicon.png', 'img') }}"/>
 
-    {% block stylesheets %}
-    {% endblock %}
+    {% block stylesheets %}{% endblock %}
     <!--suppress CssUnusedSymbol -->
     <style>
         {% if font_family is defined %}
@@ -69,7 +72,7 @@
             data-kt-app-sidebar-minimize="on"
         {% endif %}
       class="app-default">
-
+<div id="top"></div>
 {% block body %}{% endblock %}
 
 <script src="{{ asset('bundles/commonui/plugins/global/plugins.bundle.js') }}"></script>
@@ -77,71 +80,11 @@
 <script src="{{ asset('bundles/commonui/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('bundles/commonui/js/axios.min.js') }}"></script>
 <script src="{{ asset('bundles/commonui/js/autoComplete.min.js') }}"></script>
+<script src="{{ asset('bundles/commonui/js/admin.js') }}"></script>
 
-{% block javascripts %}
-    {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
-    <!--suppress JSUnresolvedReference -->
-    <script>
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                let date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
+{% block javascripts %}{% endblock %}
 
-        document.addEventListener('DOMContentLoaded', function () {
-            {% for message in app.flashes('success') %}
-            toastr.success({{ message|json_encode|raw }});
-            {% endfor %}
-
-            {% for message in app.flashes('error') %}
-            toastr.error({{ message|json_encode|raw }});
-            {% endfor %}
-
-            {% for message in app.flashes('info') %}
-            toastr.info({{ message|json_encode|raw }});
-            {% endfor %}
-        });
-
-        let $copyEl = document.getElementsByClassName('copy-to-clipboard');
-        for (let i = 0; i < $copyEl.length; i++) {
-            const target = $copyEl[i].querySelector('.copy-to-clipboard-target');
-            const button = $copyEl[i].querySelector('.copy-to-clipboard-source');
-            let clipboard = new ClipboardJS(button, {
-                target: target,
-                text: function () {
-                    return target.innerHTML;
-                }
-            });
-
-            clipboard.on('success', function () {
-                const currentLabel = button.innerHTML;
-                if (button.innerHTML === 'Zkopírováno!') {
-                    return;
-                }
-                button.innerHTML = 'Zkopírováno!';
-                setTimeout(function () {
-                    button.innerHTML = currentLabel;
-                }, 3000)
-            });
-        }
-
-        function createLoader() {
-            const loadingEl = document.createElement("div");
-            document.body.append(loadingEl);
-            loadingEl.classList.add("page-loader");
-            loadingEl.innerHTML = `
-                <span class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Probíhá zpracování…</span>
-                </span>
-            `;
-        }
-
-        createLoader();
-    </script>
-{% endblock %}
+{{ layout.flashes_js(app) }}
+{{ layout.scroll_top() }}
 </body>
 </html>

@@ -2,11 +2,3 @@
 <div class="map-wrapper w-100" style="aspect-ratio: 16/9.2 auto;">
     {% include '@CommonUiBundle/geography/cz-region-map.html.twig' with {'path_fill_color': '#b3b3b3', 'stroke': 'thin', 'urls': [], 'active_path': ''} %}
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let $tooltipEl = document.querySelectorAll(".map-wrapper [data-bs-toggle='tooltip']");
-        $tooltipEl.forEach((el) => {
-            new bootstrap.Tooltip(el);
-        });
-    });
-</script>
