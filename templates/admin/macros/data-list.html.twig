@@ -120,20 +120,25 @@
 {% endmacro %}
 
 {% macro sortable_column(id, index, label, class, sort_options, query) %}
-    <th class="
+    <th data-dt-column="{{ index }}">
+        {{- _self.sortable_column_div(id, label, class, sort_options, query) -}}
+    </th>
+{% endmacro %}
+
+{% macro sortable_column_div(id, label, class, sort_options, query) %}
+    <div class="
         text-start {{ class }} align-bottom
         {% if id in sort_options %}dt-orderable-asc dt-orderable-desc{% endif %}
         {% if id == query.sort and query.order == 'asc' %}dt-ordering-asc{% endif %}
         {% if id == query.sort and query.order == 'desc' %}dt-ordering-desc{% endif %}
         "
-        {% if id == query.sort and query.order == 'asc' %}aria-sort="ascending"{% endif %}
+         {% if id == query.sort and query.order == 'asc' %}aria-sort="ascending"{% endif %}
             {% if id == query.sort and query.order == 'desc' %}aria-sort="descending"{% endif %}
-        data-sort="{{ id }}"
-        data-dt-column="{{ index }}">
+         data-sort="{{ id }}">
         <span class="dt-column-title" role="button">
             {{- label|raw }} {% if id != query.sort or not query.order %}<i class="bi bi-filter"></i>{% endif -%}
         </span>
-    </th>
+    </div>
 {% endmacro %}
 
 {% macro empty_set(text) %}
