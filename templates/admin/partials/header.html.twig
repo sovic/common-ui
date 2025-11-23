@@ -18,12 +18,9 @@
 
             {% if auth_user and features is defined and features is not empty %}
                 <div class="app-navbar-item ms-1 ms-lg-3">
-                    <div
-                            class="btn btn-icon btn-custom btn-icon-muted btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
-                            data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-attach="parent"
-                            data-kt-menu-placement="bottom-end"
-                            title="Novinky">
+                    <div class="btn btn-icon btn-custom btn-icon-muted btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
+                         id="kt-drawer-features-button"
+                         title="Novinky">
                         <i class="ki-duotone ki-notification-status fs-1">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -31,69 +28,20 @@
                             <span class="path4"></span>
                         </i>
                     </div>
-                    <div class="menu menu-sub menu-sub-dropdown menu-column w-100 w-md-475px" data-kt-menu="true">
-
-                        <div class="d-flex flex-column bgi-no-repeat rounded-top bg-primary">
-                            <h3 class="text-white fw-semibold px-9 mt-5 mb-5">
-                                Novinky
-                            </h3>
-                        </div>
-
-                        <div class="d-flex flex-column px-6 py-4 overflow-scroll" style="max-height: 250px;">
-                            {% for feature in features %}
-                                <div class="d-flex flex-stack py-4">
-                                    <div class="d-flex align-items-center">
-                                        <div class="symbol symbol-35px me-4">
-                                        <span class="symbol-label bg-light-primary">
-                                            {% if feature.icon is defined and feature.icon is not empty %}
-                                                <i class="{{ feature.icon }}"></i>
-                                            {% endif %}
-                                        </span>
-                                        </div>
-                                        <div class="mb-0 me-2">
-                                            {% if url is defined and url is not empty %}
-                                                <a href="{{ url }}"
-                                                   class="fs-6 text-gray-800 text-hover-primary fw-bold">
-                                                    {{ feature.name }}
-                                                </a>
-                                            {% else %}
-                                                <h4 class="fs-6 text-gray-800 text-hover-primary fw-bold">
-                                                    {{ feature.name }}
-                                                </h4>
-                                            {% endif %}
-                                            {% if feature.description is defined and feature.description is not empty %}
-                                                <div class="text-gray-500 fs-7">{{ feature.description }}</div>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                                {% if feature.image is defined %}
-                                    <div class="d-flex">
-                                        <img src="{{ asset('admin/features/' ~ feature.image, 'img') }}"
-                                             alt="{{ feature.name }}"
-                                             class="img-fluid w-100">
-                                    </div>
-                                {% endif %}
-
-                                {% if not loop.last %}
-                                    <hr class="border border-primary opacity-25 mt-8 mb-5">
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                    </div>
                 </div>
             {% endif %}
 
             <a href="#"
                class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
-               data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
+               data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+               data-kt-menu-attach="parent"
                data-kt-menu-placement="bottom-end">
                 <i class="ki-outline ki-night-day theme-light-show fs-1"></i>
-                <i class="ki-outline ki-moon theme-dark-show fs-1"></i></a>
-            <div
-                    class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-200px"
-                    data-kt-menu="true" data-kt-element="theme-mode-menu">
+                <i class="ki-outline ki-moon theme-dark-show fs-1"></i>
+            </a>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-200px"
+                 data-kt-menu="true"
+                 data-kt-element="theme-mode-menu">
 
                 <div class="menu-item px-3 my-0">
                     <a href="#"
@@ -128,3 +76,4 @@
 
     </div>
 </div>
+

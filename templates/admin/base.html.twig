@@ -86,5 +86,9 @@
 
 {{ layout.flashes_js(app) }}
 {{ layout.scroll_top() }}
+
+{% if auth_user and features is defined and features is not empty %}
+    {% include '@CommonUiBundle/admin/partials/user-features-drawer.html.twig' %}
+{% endif %}
 </body>
 </html>
