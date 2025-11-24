@@ -119,6 +119,25 @@
     </a>
 {% endmacro %}
 
+{% macro actions_icons(actions) %}
+    {% for action in actions %}
+        {% set icon = action.icon is defined ? action.icon : 'ki-duotone ki-pencil' %}
+        <a href="{{ action.url }}"
+           class="btn btn-icon btn-active-light-primary w-30px h-30px {% if not loop.last %}me-3{% endif %}">
+            <span data-bs-toggle="tooltip"
+                  data-bs-trigger="hover"
+                  aria-label="{{ action.title }}"
+                  data-bs-original-title="{{ action.title }}"
+                  data-kt-initialized="1">
+                <i class="{{ icon }} fs-3">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+            </span>
+        </a>
+    {% endfor %}
+{% endmacro %}
+
 {% macro sortable_column(id, index, label, class, sort_options, query) %}
     <th data-dt-column="{{ index }}">
         {{- _self.sortable_column_div(id, label, class, sort_options, query) -}}
