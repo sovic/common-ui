@@ -45,6 +45,7 @@
                 <div class="card-body pt-0">
                     <div class="dt-container dt-bootstrap5 dt-empty-footer">
                         <div class="table-responsive">
+                            {% block data_list_pre_table %}{% endblock %}
                             {% block data_list_group_actions %}{% endblock %}
                             {% block data_list_table %}{% endblock %}
                         </div>
