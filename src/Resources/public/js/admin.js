@@ -28,6 +28,10 @@ function setCookie(name, value, days) {
 
 function toggleScrollTop() {
     const btn = document.getElementById('back-to-top');
+    if (!btn) {
+        return;
+    }
+
     const threshold = Number(btn.dataset.threshold) || 300;
 
     if (window.scrollY > threshold) {
