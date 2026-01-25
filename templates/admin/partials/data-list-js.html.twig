@@ -1,6 +1,6 @@
 <!--suppress JSUnusedGlobalSymbols -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function bindActions() {
         const $el = document.getElementsByClassName('action-button');
         for (let i = 0; i < $el.length; i++) {
             $el[i].addEventListener('click', function (event) {
@@ -21,51 +21,9 @@
                 }
             });
         }
+    }
 
-        function commitAction(method, parameters, reload) {
-            KTApp.showPageLoading();
-            axios.post('/api/web/' + method, parameters).then(function (response) {
-                let data = response.data.data;
-                if (typeof data.message !== 'undefined') {
-                    toastr.success(data.message);
-                }
-                if (reload) {
-                    if (typeof data.redirect !== 'undefined') {
-                        window.location.href = data.redirect;
-                        window.location.reload();
-                    } else {
-                        window.location.reload();
-                    }
-                }
-                KTApp.hidePageLoading();
-            }).catch(function (error) {
-                let msg = error.response.data.data.errors.concat('\n')
-                toastr.error(msg);
-                KTApp.hidePageLoading();
-            });
-        }
-
-        const $sortEl = document.getElementsByClassName('dt-orderable-asc dt-orderable-desc');
-        for (let i = 0; i < $sortEl.length; i++) {
-            $sortEl[i].addEventListener('click', function (event) {
-                event.preventDefault();
-                let url = new URL(window.location.href);
-                let sort = $sortEl[i].getAttribute('data-sort');
-                let order;
-                if ($sortEl[i].classList.contains('dt-ordering-asc')) {
-                    order = 'desc';
-                } else if ($sortEl[i].classList.contains('dt-ordering-desc')) {
-                    order = '';
-                    sort = '';
-                } else {
-                    order = 'asc';
-                }
-                url.searchParams.set('sort', sort);
-                url.searchParams.set('order', order);
-                window.location.href = url.toString();
-            });
-        }
-
+    function bindGroupActions() {
         const $groupActionEl = document.getElementsByClassName('group-action');
         for (let i = 0; i < $groupActionEl.length; i++) {
             $groupActionEl[i].addEventListener('click', function (event) {
@@ -110,10 +68,14 @@
                 });
             });
         }
-    });
+    }
 
-    let $form = document.getElementById('search');
-    if ($form) {
+    function bindSearch() {
+        let $form = document.getElementById('search');
+        if (!$form) {
+            return;
+        }
+
         $form.addEventListener('submit', function (e) {
             e.preventDefault();
             search();
@@ -221,10 +183,64 @@
         }
     }
 
+    function bindListSort() {
+        const $sortEl = document.getElementsByClassName('dt-orderable-asc dt-orderable-desc');
+        for (let i = 0; i < $sortEl.length; i++) {
+            $sortEl[i].addEventListener('click', function (event) {
+                event.preventDefault();
+                let url = new URL(window.location.href);
+                let sort = $sortEl[i].getAttribute('data-sort');
+                let order;
+                if ($sortEl[i].classList.contains('dt-ordering-asc')) {
+                    order = 'desc';
+                } else if ($sortEl[i].classList.contains('dt-ordering-desc')) {
+                    order = '';
+                    sort = '';
+                } else {
+                    order = 'asc';
+                }
+                url.searchParams.set('sort', sort);
+                url.searchParams.set('order', order);
+                window.location.href = url.toString();
+            });
+        }
+    }
+
+    function commitAction(method, parameters, reload) {
+        KTApp.showPageLoading();
+        axios.post('/api/web/' + method, parameters).then(function (response) {
+            let data = response.data.data;
+            if (typeof data.message !== 'undefined') {
+                toastr.success(data.message);
+            }
+            if (reload) {
+                if (typeof data.redirect !== 'undefined') {
+                    window.location.href = data.redirect;
+                    window.location.reload();
+                } else {
+                    window.location.reload();
+                }
+            }
+            KTApp.hidePageLoading();
+        }).catch(function (error) {
+            let msg = error.response.data.data.errors.concat('\n')
+            toastr.error(msg);
+            KTApp.hidePageLoading();
+        });
+    }
+
     function search() {
+        let $form = document.getElementById('search');
         let search = $form.querySelector('input[name="search"]').value;
         let url = new URL(window.location.href);
         url.searchParams.set('search', search);
         window.location.href = url.toString();
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        bindActions();
+        bindGroupActions();
+        bindSearch();
+        bindListSort();
+    });
 </script>
