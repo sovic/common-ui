@@ -137,7 +137,11 @@
                                    href="mailto:{{ recipient_email }}">{{ recipient_email }}</a>.
                                 <br>
                             {% endif %}
-
+                            {% if unsubscribe_url is defined and unsubscribe_url is not empty %}
+                                Pokud si nepřejete dostávat další e-maily, můžete se
+                                <a style="{{ theme.footer_link_style }}" href="{{ unsubscribe_url }}">odhlásit zde</a>.
+                                <br>
+                            {% endif %}
                             {% if email_signature is defined and email_signature is not empty %}
                                 {{ email_signature|raw }} ©{{ "now"|date("Y") }}
                             {% else %}
