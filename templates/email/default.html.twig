@@ -84,7 +84,7 @@
                         <a href="{{ absolute_url('/') }}"
                            style="box-sizing: border-box; color: {{ theme.primary_color }}; text-decoration: underline;">
                             <img src="{{ email.image('@images/' ~ email_logo_path) }}" height="60"
-                                 alt="{{ email_signature }}"
+                                 alt="{{ email_signature is defined and email_signature is not empty ? email_signature : subject }}"
                                  style="-ms-interpolation-mode: bicubic; min-width: 40px; max-height: 60px;">
                         </a>
                     </td>
