@@ -143,6 +143,7 @@
                                 <br>
                             {% endif %}
                             {% if email_signature is defined and email_signature is not empty %}
+                                {% set email_signature = email_signature|replace({'<a ': '<a style="' ~ theme.footer_link_style ~ '" '}) %}
                                 {{ email_signature|raw }} ©{{ "now"|date("Y") }}
                             {% else %}
                                 ©{{ "now"|date("Y") }}
