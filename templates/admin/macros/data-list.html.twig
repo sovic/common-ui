@@ -103,7 +103,7 @@
                 {% endif %}
 
                 <a href="{{ action.url }}"
-                   class="btn btn-icon {{ btn_class }} w-30px h-30px {% if not loop.last %}me-3{% endif %}"
+                   class="btn btn-icon {{ action.btn_class }} w-30px h-30px {% if not loop.last %}me-3{% endif %}"
                    data-bs-toggle="tooltip"
                    data-bs-trigger="hover"
                    aria-label="{{ action.title }}"
