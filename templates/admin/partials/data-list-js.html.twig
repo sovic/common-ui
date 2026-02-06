@@ -243,4 +243,16 @@
         bindSearch();
         bindListSort();
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const $trEls = document.querySelectorAll('tr');
+        for (let i = 0; i < $trEls.length; i++) {
+            $trEls[i].addEventListener('mouseenter', function () {
+                this.querySelector('.actions-wrapper').classList.remove('d-none');
+            });
+            $trEls[i].addEventListener('mouseleave', function () {
+                this.querySelector('.actions-wrapper').classList.add('d-none');
+            });
+        }
+    });
 </script>
