@@ -80,7 +80,7 @@
 
 {% macro actions_icons(actions) %}
     {% if actions|length > 0 %}
-        <div class="d-flex my-3 ms-9">
+        <div class="my-3 ms-9 text-end">
             {% for action in actions %}
                 {% set icon = action.icon is defined ? action.icon : 'ki-duotone ki-pencil' %}
                 {% if action.model is not defined %}
