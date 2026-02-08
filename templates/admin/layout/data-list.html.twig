@@ -17,6 +17,10 @@
     {% set is_search_enabled = true %}
 {% endif %}
 
+{% set data_list_title_var %}
+    {% block data_list_title %}{% endblock %}
+{% endset %}
+
 {% block content %}
     <div class="app-container container-fluid">
         <form method="get" id="search" class="border-0">
@@ -25,9 +29,9 @@
                     <div class="card-title">
                         {% if is_search_enabled %}
                             {{ data_list.list_header_search(search) }}
+                        {% else %}
+                            {{ data_list_title_var|raw }}
                         {% endif %}
-
-                        {% block data_list_title %}{% endblock %}
                     </div>
 
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
@@ -43,6 +47,10 @@
                     </div>
                 </div>
                 <div class="card-body pt-0">
+                    {% if is_search_enabled %}
+                        {{ data_list_title_var|raw }}
+                    {% endif %}
+
                     <div class="dt-container dt-bootstrap5 dt-empty-footer">
                         <div class="table-responsive">
                             {% block data_list_pre_table %}{% endblock %}
