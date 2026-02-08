@@ -20,8 +20,8 @@
 {% block content %}
     <div class="app-container container-fluid">
         <form method="get" id="search" class="border-0">
-            <div class="card card-flush">
-                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+            <div class="{{ theme.default.card_class }}">
+                <div class="{{ theme.default.card_header_class }}">
                     <div class="card-title">
                         {% if is_search_enabled %}
                             {{ data_list.list_header_search(search) }}
