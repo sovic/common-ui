@@ -27,15 +27,17 @@
 
 {% macro actions(actions, btn_class) %}
     {% if btn_class is not defined or btn_class is empty %}
-        {% set btn_class = 'btn btn-sm btn-light btn-flex btn-center btn-active-light-primary' %}
+        {% set btn_class = 'btn btn-sm btn-icon btn-light btn-flex btn-center btn-active-light-primary' %}
     {% endif %}
     {% if actions|length > 0 %}
         <a href="#"
            class="{{ btn_class }}"
            data-kt-menu-trigger="click"
-           data-kt-menu-placement="bottom-end">
-            Akce
-            <i class="ki-outline ki-down fs-5 ms-1"></i>
+           data-kt-menu-placement="bottom-end"
+           data-bs-toggle="tooltip"
+           data-bs-trigger="hover"
+           aria-label="Další akce">
+            <i class="bi bi-sliders ms-1"></i>
         </a>
         <div data-kt-menu="true"
              class="
