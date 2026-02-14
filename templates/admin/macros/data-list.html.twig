@@ -220,10 +220,10 @@
     <button type="button" class="btn btn-light-primary show menu-dropdown"
             data-kt-menu-trigger="click"
             data-kt-menu-placement="bottom-end">
-        <i class="ki-duotone ki-filter fs-2">
+        <i class="ki-duotone ki-filter fs-2 pe-0 pe-md-2">
             <span class="path1"></span><span class="path2"></span>
         </i>
-        Filtrovat
+        <span class="d-none d-md-inline-block">Filtrovat</span>
     </button>
     <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px"
          data-kt-menu="true"
@@ -316,18 +316,12 @@
 
 {% macro list_footer(pagination, query) %}
     <div class="row">
-        <div class="
-            col-sm-12 col-md-5 d-flex align-items-center
-            justify-content-center justify-content-md-start dt-toolbar
-        ">
+        <div class="col-5 d-flex align-items-start justify-content-start dt-toolbar">
             <div>
                 {% include '@CommonUiBundle/admin/partials/data-list-limit.html.twig' %}
             </div>
         </div>
-        <div class="
-            col-sm-12 col-md-7 d-flex
-            align-items-center justify-content-center justify-content-md-end
-        ">
+        <div class="col-7 d-flex align-items-end justify-content-end justify-content-md-end">
             {% include '@CommonUiBundle/admin/partials/pagination.html.twig' %}
         </div>
     </div>

@@ -35,9 +35,11 @@
                     </div>
 
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        <div class="d-flex align-items-center justify-content-center justify-content-md-end">
-                            {% include '@CommonUiBundle/admin/partials/pagination.html.twig' %}
-                        </div>
+                        {% if pagination is defined and pagination.pageCount > 1 %}
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+                                {% include '@CommonUiBundle/admin/partials/pagination.html.twig' %}
+                            </div>
+                        {% endif %}
 
                         {% block add_item %}{% endblock %}
                         {% if is_filters_enabled %}
